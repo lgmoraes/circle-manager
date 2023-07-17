@@ -1,0 +1,10 @@
+@use '../util/' as *;
+
+.home {
+  h1 {
+    div {
+      margin: 0.25em;
+      display: inline-block;
+    }
+  }
+}

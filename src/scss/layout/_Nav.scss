@@ -1,0 +1,24 @@
+@use '../util/' as *;
+
+.nav {
+  width: $nav-width;
+  height: 100vh;
+  padding: 50px;
+
+  color: white;
+  background-color: $color-primary;
+  font: normal normal bold 16px/21px Roboto;
+
+  display: flex;
+  flex-direction: column;
+
+  .logo {
+    align-self: center;
+  }
+  &__links {
+    list-style: none;
+  }
+  a {
+    @include focusable(1px);
+  }
+}

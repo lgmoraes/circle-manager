@@ -1,0 +1,37 @@
+@use '../util/' as *;
+
+.button {
+  @include focusable(8px, $border-radius);
+  &:hover {
+    background-color: scale-color($color: $color-primary, $lightness: 15%);
+    border-color: transparent;
+  }
+
+  min-width: 250px;
+  width: fit-content;
+  padding: 0.9em 1.8em;
+  margin: 0.5em;
+  box-sizing: border-box;
+
+  color: white;
+  text-align: center;
+  background-color: $color-primary;
+  font-size: 14px;
+  font-family: $font-primary;
+  border-radius: $border-radius;
+  border: $border-width solid $color-primary;
+  transition: $transition-duration;
+  cursor: pointer;
+
+  display: inline-block;
+
+  &--secondary {
+    color: $color-primary;
+    background-color: transparent;
+
+    &:hover {
+      background-color: #e6f7ff;
+      border-color: $color-primary;
+    }
+  }
+}

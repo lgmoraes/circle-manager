@@ -1,0 +1,66 @@
+@use 'variables' as *;
+
+/* Use focusable to make element visualy accessible */
+@mixin focusable($offset: $focus-offset, $border-radius: $border-radius) {
+  outline: 0; /* Delete default gray border */
+  position: relative;
+
+  &:focus-visible::after {
+    content: '';
+
+    border: solid $focus-border-size $color-primary;
+    border-radius: ($border-radius + $offset) - 2px;
+    outline: none;
+
+    position: absolute;
+    top: -$offset;
+    bottom: -$offset;
+    left: -$offset;
+    right: -$offset;
+  }
+}
+
+@mixin focusable-circle($offset: $focus-offset) {
+  /* Supprime le bord gris par défaut */
+  outline: 0;
+  position: relative;
+
+  &:focus-visible::after {
+    content: '';
+
+    border: solid $focus-border-size $color-primary;
+    border-radius: 100%;
+    outline: none;
+
+    position: absolute;
+    top: -$offset;
+    bottom: -$offset;
+    left: -$offset;
+    right: -$offset;
+  }
+}
+
+@mixin focusable-block($border-radius: $border-radius) {
+  &:focus-visible {
+    outline: solid $focus-border-size $color-primary;
+    border-radius: $border-radius;
+    z-index: 1;
+  }
+}
+
+@mixin focusable-inset($width: $focus-border-size) {
+  &:focus-visible {
+    box-shadow: inset 0 0 0 $width $color-primary;
+  }
+}
+
+@mixin focusable-img($offset: $focus-offset) {
+  &:focus-visible {
+    padding: $offset;
+
+    border: solid $focus-border-size $color-primary;
+    border-radius: $offset;
+
+    outline: none;
+  }
+}

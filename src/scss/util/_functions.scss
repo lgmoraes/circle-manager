@@ -1,0 +1,3 @@
+@function pastel($color, $lightness: 96.5%) {
+  @return hsl(hue($color) 100% $lightness);
+}
