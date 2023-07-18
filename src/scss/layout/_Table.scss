@@ -1,0 +1,42 @@
+@use '../util/' as *;
+
+$table_gap: 10px;
+
+.table {
+  flex-grow: 1;
+  border-collapse: collapse;
+  text-align: left;
+
+  &__thead &__row {
+    margin-bottom: $table_gap;
+
+    font-weight: bold;
+    color: white;
+    background-color: $color-primary;
+  }
+  &__tbody {
+    display: flex;
+    flex-direction: column;
+    gap: $table_gap;
+  }
+
+  &__row {
+    padding: 1em 1em;
+
+    background-color: white;
+    box-shadow: $box-shadow;
+    border-radius: $border-radius;
+    font-size: 16px;
+    overflow: hidden;
+
+    display: flex;
+    gap: $table_gap;
+  }
+
+  &__th, &__cell {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    flex: 1 1 0;
+  }
+}

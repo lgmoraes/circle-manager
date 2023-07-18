@@ -1,5 +1,16 @@
 import { useEffect } from 'react'
-import Button from '../../components/Button'
+import { Table, Column } from '../../components/Table'
+
+const data = [
+  ['Mens Cotton Jacket', 'men clothing', '55.99', '152.65'],
+  [
+    "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet",
+    'jewelry',
+    '695',
+    '152.65',
+  ],
+  ['White Gold Plated Princess', 'jewelry', '9.99', '152.65'],
+]
 
 function Home() {
   useEffect(() => {
@@ -7,13 +18,20 @@ function Home() {
   }, [])
 
   return (
-    <main className="home">
+    <div className="home">
       <h1>Products management</h1>
 
-      <div className="home__buttons">
-        <Button>Button</Button>
-      </div>
-    </main>
+      <Table data={data}>
+        <Column size="3">Product name</Column>
+        <Column size="1">Category</Column>
+        <Column size="1" align="right">
+          Price
+        </Column>
+        <Column size="1" align="right">
+          Price <span className="normal">(including VAT)</span>
+        </Column>
+      </Table>
+    </div>
   )
 }
 

@@ -44,6 +44,10 @@ body {
   display: flex;
 }
 
+main {
+  width: 100%;
+}
+
 h1 {
   margin: 1.5em 0;
 
@@ -91,6 +95,10 @@ form input {
 
 .bold {
   font-weight: bold;
+}
+
+.normal {
+  font-weight: normal;
 }
 
 /*** SCREEN READER ***/
