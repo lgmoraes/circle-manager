@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Table, Column } from '../../components/Table'
+import { formatPrice } from '../../utils/functions'
 
 const data = [
   ['Mens Cotton Jacket', 'men clothing', '55.99', '152.65'],
@@ -24,8 +25,16 @@ function Home() {
       <Table data={data}>
         <Column size="3">Product name</Column>
         <Column>Category</Column>
-        <Column align="right">Price</Column>
-        <Column align="right">
+        <Column
+          align="right"
+          render={(rowData, index) => formatPrice(rowData[index])}
+        >
+          Price
+        </Column>
+        <Column
+          align="right"
+          render={(rowData) => formatPrice(rowData[2] * 1.2)}
+        >
           Price <span className="normal">(including VAT)</span>
         </Column>
       </Table>

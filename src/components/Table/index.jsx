@@ -24,7 +24,9 @@ export function Table({ children, data }) {
                 size={col.props.size}
                 align={col.props.align}
               >
-                {rowData[indexCell]}
+                {col.props.render
+                  ? col.props.render(rowData, indexCell)
+                  : rowData[indexCell]}
               </Cell>
             ))}
           </div>
@@ -34,7 +36,30 @@ export function Table({ children, data }) {
   )
 }
 
-export function Column({ children, size = '1', align = 'left' }) {
+/**
+ * Column component represents a column in the table.
+ * It defines the size, alignment, and optionally, custom rendering for the column.
+ *
+ * @component
+ * @param {object} props - The props object for the Column component.
+ * @param {React.ReactNode} props.children - Header label.
+ * @param {string} [props.size='1'] - The relative size of the column compared to other columns.
+ * @param {('left'|'center'|'right')} [props.align='left'] - The alignment of the column content.
+ * @param {function} [props.render=null] - Optional custom rendering function for the column content.
+ * @returns {JSX.Element} The JSX element representing the column header.
+ *
+ * @example
+ * // Example usage of the Column component
+ * <Column size="2" align="center" render={(rowData, index) => <strong>{rowData[index]}€</strong>}>
+ *   Product Price
+ * </Column>
+ */
+export function Column({
+  children,
+  size = '1',
+  align = 'left',
+  render = null,
+}) {
   return (
     <div
       className="table__th"
