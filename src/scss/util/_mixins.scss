@@ -1,5 +1,11 @@
 @use 'variables' as *;
 
+@mixin ellipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 /* Use focusable to make element visualy accessible */
 @mixin focusable($offset: $focus-offset, $border-radius: $border-radius) {
   outline: 0; /* Delete default gray border */

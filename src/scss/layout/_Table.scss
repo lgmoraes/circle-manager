@@ -1,7 +1,5 @@
 @use '../util/' as *;
 
-$table_gap: 10px;
-
 .table {
   flex-grow: 1;
   border-collapse: collapse;
@@ -21,7 +19,8 @@ $table_gap: 10px;
   }
 
   &__row {
-    padding: 1em 1em;
+    height: $table-row-height;
+    padding: $table-row-padding;
 
     background-color: white;
     box-shadow: $box-shadow;
@@ -30,13 +29,12 @@ $table_gap: 10px;
     overflow: hidden;
 
     display: flex;
+    align-items: center;
     gap: $table_gap;
   }
 
   &__th, &__cell {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
+    @include ellipsis;
     flex: 1 1 0;
   }
 }

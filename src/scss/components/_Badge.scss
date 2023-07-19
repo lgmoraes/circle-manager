@@ -1,0 +1,20 @@
+@use '../util/' as *;
+
+.badge {
+  @include ellipsis;
+  height: 33px;
+  padding: .5em 1em;
+
+  color: white;
+  background-color: #C7C7C7;
+  border-radius: 33px;
+
+  display: inline-block;
+
+  &--green {
+    background-color: $color-green;
+  }
+  &--orange {
+    background-color: $color-orange;
+  }
+}
