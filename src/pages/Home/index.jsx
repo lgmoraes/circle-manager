@@ -24,7 +24,9 @@ function Home() {
       <h1>Products management</h1>
 
       <Table data={data}>
-        <Column size="3">Product name</Column>
+        <Column size="3" fontWeight="bold">
+          Product name
+        </Column>
         <Column
           render={(rowData, index) => (
             <Badge color="green">{rowData[index]}</Badge>

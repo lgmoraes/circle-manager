@@ -23,6 +23,7 @@ export function Table({ children, data }) {
                 key={indexCell}
                 size={col.props.size}
                 align={col.props.align}
+                fontWeight={col.props.fontWeight}
               >
                 {col.props.render
                   ? col.props.render(rowData, indexCell)
@@ -45,6 +46,7 @@ export function Table({ children, data }) {
  * @param {React.ReactNode} props.children - Header label.
  * @param {string} [props.size='1'] - The relative size of the column compared to other columns.
  * @param {('left'|'center'|'right')} [props.align='left'] - The alignment of the column content.
+ * @param {string} [props.fontWeight='normal'] - The font weight of the column.
  * @param {function} [props.render=null] - Optional custom rendering function for the column content.
  * @returns {JSX.Element} The JSX element representing the column header.
  *
@@ -58,25 +60,35 @@ export function Column({
   children,
   size = '1',
   align = 'left',
+  fontWeight = 'normal',
   render = null,
 }) {
   return (
     <div
       className="table__th"
       role="columnheader"
-      style={{ flexBasis: 0, flexGrow: size, textAlign: align }}
+      style={{
+        flexBasis: 0,
+        flexGrow: size,
+        textAlign: align,
+      }}
     >
       {children}
     </div>
   )
 }
 
-function Cell({ children, size = '1', align = 'left' }) {
+function Cell({ children, size = '1', align = 'left', fontWeight = 'normal' }) {
   return (
     <div
       className="table__cell"
       role="cell"
-      style={{ flexBasis: 0, flexGrow: size, textAlign: align }}
+      style={{
+        flexBasis: 0,
+        flexGrow: size,
+        textAlign: align,
+        fontWeight: fontWeight,
+      }}
     >
       {children}
     </div>
