@@ -5,12 +5,16 @@ export function Table({ children, data }) {
 
   return (
     <div className="table" role="table" aria-label="Produits">
+      {/* // Header */}
       <div className="table__thead" role="rowgroup">
         <div className="table__row" role="row">
-          {children.map((column) => column)}
+          {children.map((col, index) => (
+            <Column key={index} {...col.props} />
+          ))}
         </div>
       </div>
 
+      {/* Cells */}
       <div className="table__tbody" role="rowgroup">
         {data.map((rowData, indexRow) => (
           <div key={indexRow} className="table__row" role="row">

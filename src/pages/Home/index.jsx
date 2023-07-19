@@ -23,11 +23,9 @@ function Home() {
 
       <Table data={data}>
         <Column size="3">Product name</Column>
-        <Column size="1">Category</Column>
-        <Column size="1" align="right">
-          Price
-        </Column>
-        <Column size="1" align="right">
+        <Column>Category</Column>
+        <Column align="right">Price</Column>
+        <Column align="right">
           Price <span className="normal">(including VAT)</span>
         </Column>
       </Table>
