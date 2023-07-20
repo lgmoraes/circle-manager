@@ -16,12 +16,12 @@ textarea:focus {
 }
 
 :root {
-  color: $color-text;
+  color: $color-text-secondary;
 
   font-family: $font-primary;
   font-size: $font-size;
 
-  background-color: $color-backgroung;
+  background-color: $color-background;
 
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
