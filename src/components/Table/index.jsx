@@ -3,6 +3,8 @@ import React from 'react'
 export function Table({ children, data }) {
   const columns = children.filter((c) => c.type.name === 'Column')
 
+  if (data === undefined) return <p>Aucune données</p>
+
   return (
     <div className="table" role="table" aria-label="Produits">
       {/* // Header */}
@@ -16,18 +18,19 @@ export function Table({ children, data }) {
 
       {/* Cells */}
       <div className="table__tbody" role="rowgroup">
-        {data.map((rowData, indexRow) => (
-          <div key={indexRow} className="table__row" role="row">
+        {data.map((product, productIndex) => (
+          <div key={productIndex} className="table__row" role="row">
             {columns.map((col, indexCell) => (
               <Cell
                 key={indexCell}
+                dataKey={col.props.dataKey}
                 size={col.props.size}
                 align={col.props.align}
                 fontWeight={col.props.fontWeight}
               >
                 {col.props.render
-                  ? col.props.render(rowData, indexCell)
-                  : rowData[indexCell]}
+                  ? col.props.render(product[col.props.dataKey])
+                  : product[col.props.dataKey]}
               </Cell>
             ))}
           </div>
@@ -44,6 +47,7 @@ export function Table({ children, data }) {
  * @component
  * @param {object} props - The props object for the Column component.
  * @param {React.ReactNode} props.children - Header label.
+ * @param {string} props.dataKey - The key to bind the corresponding data in the data source.
  * @param {string} [props.size='1'] - The relative size of the column compared to other columns.
  * @param {('left'|'center'|'right')} [props.align='left'] - The alignment of the column content.
  * @param {string} [props.fontWeight='normal'] - The font weight of the column.
@@ -51,13 +55,13 @@ export function Table({ children, data }) {
  * @returns {JSX.Element} The JSX element representing the column header.
  *
  * @example
- * // Example usage of the Column component
  * <Column size="2" align="center" render={(rowData, index) => <strong>{rowData[index]}€</strong>}>
  *   Product Price
  * </Column>
  */
 export function Column({
   children,
+  dataKey,
   size = '1',
   align = 'left',
   fontWeight = 'normal',

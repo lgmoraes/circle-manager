@@ -2,47 +2,49 @@ import { useEffect } from 'react'
 import { Table, Column } from '../../components/Table'
 import { formatPrice } from '../../utils/functions'
 import Badge from '../../components/Badge'
+import { useQuery } from '@tanstack/react-query'
 
-const data = [
-  ['Mens Cotton Jacket', 'men clothing', '55.99', '152.65'],
-  [
-    "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet",
-    'jewelry',
-    '695',
-    '152.65',
-  ],
-  ['White Gold Plated Princess', 'jewelry', '9.99', '152.65'],
-]
+const getProducts = async () =>
+  fetch('https://fakestoreapi.com/products').then((res) => res.json())
 
 function Home() {
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['products'],
+    queryFn: getProducts,
+  })
+
   useEffect(() => {
     document.title = 'Products management'
   }, [])
+
+  if (isLoading) return <p>Loader</p>
+  if (isError) return <p>Something went wrong...</p>
 
   return (
     <div className="home">
       <h1>Products management</h1>
 
       <Table data={data}>
-        <Column size="3" fontWeight="bold">
+        <Column dataKey="title" size="3" fontWeight="bold">
           Product name
         </Column>
         <Column
-          render={(rowData, index) => (
-            <Badge color="green">{rowData[index]}</Badge>
-          )}
+          dataKey="category"
+          render={(category) => <Badge color="green">{category}</Badge>}
         >
           Category
         </Column>
         <Column
+          dataKey="price"
           align="right"
-          render={(rowData, index) => formatPrice(rowData[index])}
+          render={(price) => formatPrice(price)}
         >
           Price
         </Column>
         <Column
+          dataKey="price"
           align="right"
-          render={(rowData) => formatPrice(rowData[2] * 1.2)}
+          render={(price) => formatPrice(price * 1.2)}
         >
           Price <span className="normal">(including VAT)</span>
         </Column>
