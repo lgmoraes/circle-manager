@@ -23,7 +23,7 @@ function Home() {
     <div className="home">
       <h1>Products management</h1>
 
-      <Table data={data}>
+      <Table data={data} urlFn={(data) => `product/${data.id}`}>
         <Column dataKey="title" size="3" fontWeight="bold">
           Product name
         </Column>

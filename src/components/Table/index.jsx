@@ -1,6 +1,16 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-export function Table({ children, data }) {
+/**
+ * This component allows displaying a highly customizable table with user-defined columns and data.
+ *
+ * @param {object} props - The component's props.
+ * @param {ReactNode} props.children - The columns of the table, defined as children of the component. Each child should be a `Column` component representing a column with custom configuration.
+ * @param {object[]} props.data - The data to be displayed in the table. It should be an array of objects where each object represents a row in the table.
+ * @param {function} [props.urlFn] - An optional function to generate the URL associated with each row of the table.
+ * @returns {JSX.Element} - The rendered table component with data.
+ */
+export function Table({ children, data, urlFn }) {
   const columns = children.filter((c) => c.type.name === 'Column')
 
   if (data === undefined) return <p>Aucune données</p>
@@ -19,7 +29,7 @@ export function Table({ children, data }) {
       {/* Cells */}
       <div className="table__tbody" role="rowgroup">
         {data.map((product, productIndex) => (
-          <div key={productIndex} className="table__row" role="row">
+          <Row key={productIndex} url={urlFn ? urlFn(product) : false}>
             {columns.map((col, indexCell) => (
               <Cell
                 key={indexCell}
@@ -33,7 +43,7 @@ export function Table({ children, data }) {
                   : product[col.props.dataKey]}
               </Cell>
             ))}
-          </div>
+          </Row>
         ))}
       </div>
     </div>
@@ -79,6 +89,17 @@ export function Column({
     >
       {children}
     </div>
+  )
+}
+
+function Row({ children, url }) {
+  const RowElement = url ? Link : 'div'
+  const urlProp = url ? { to: url } : {}
+
+  return (
+    <RowElement {...urlProp} className="table__row" role="row">
+      {children}
+    </RowElement>
   )
 }
 
