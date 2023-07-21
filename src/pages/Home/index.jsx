@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { Table, Column } from '../../components/Table'
 import { formatPrice } from '../../utils/functions'
-import Badge from '../../components/Badge'
+import { makeBadge } from '../../components/Badge'
 import { useQuery } from '@tanstack/react-query'
 
 const getProducts = async () =>
@@ -28,10 +28,7 @@ function Home() {
         <Column dataKey="title" size="3" fontWeight="bold">
           Product name
         </Column>
-        <Column
-          dataKey="category"
-          render={(category) => <Badge color="green">{category}</Badge>}
-        >
+        <Column dataKey="category" render={(category) => makeBadge(category)}>
           Category
         </Column>
         <Column
