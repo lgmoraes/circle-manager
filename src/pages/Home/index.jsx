@@ -1,11 +1,10 @@
 import { useEffect } from 'react'
-import { Table, Column } from '../../components/Table'
-import { formatPrice } from '../../utils/functions'
-import { makeBadge } from '../../components/Badge'
 import { useQuery } from '@tanstack/react-query'
+import { Table, Column } from '../../components/Table'
+import { makeBadge } from '../../components/Badge'
+import { formatPrice } from '../../utils/functions'
+import { getProducts } from '../../utils/api'
 
-const getProducts = async () =>
-  fetch('https://fakestoreapi.com/products').then((res) => res.json())
 
 function Home() {
   const { data, isLoading, isError } = useQuery({
