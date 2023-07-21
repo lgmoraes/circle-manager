@@ -5,12 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import Home from './pages/Home'
 import Error404 from './pages/Error404'
 import Nav from './components/Nav'
-import styled from 'styled-components'
 import './scss/main.scss'
-
-const Main = styled.main`
-  padding: 2em;
-`
 
 const queryClient = new QueryClient()
 
@@ -20,13 +15,13 @@ root.render(
     <QueryClientProvider client={queryClient}>
       <Router>
         <Nav />
-        <Main>
+        <main>
           <Routes>
             <Route path="/" element={<Home />}></Route>
             {/* <Route path="/product" element={<Product />}></Route> */}
             <Route path="*" element={<Error404 />}></Route>
           </Routes>
-        </Main>
+        </main>
       </Router>
     </QueryClientProvider>
   </React.StrictMode>
