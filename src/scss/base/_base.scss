@@ -47,17 +47,26 @@ body {
 main {
   width: 100%;
   height: 100vh;
-  padding: 3em;
+  padding: $gap;
   padding-top: 0;
 
   overflow: auto;
 }
 
 h1 {
+  @include ellipsis;
   color: $color-primary;
   margin: 2em 0;
 
+  font-size: $title-size;
   text-align: center;
+  font-weight: bold;
+}
+
+h2 {
+  color: $color-primary;
+  margin: 2em 0;
+
   font-weight: bold;
 }
 

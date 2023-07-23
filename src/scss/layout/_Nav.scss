@@ -4,6 +4,7 @@
   width: $nav-width;
   height: 100vh;
   padding: 50px;
+  flex-shrink: 0;
 
   color: white;
   background-color: $color-primary;
