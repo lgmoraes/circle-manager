@@ -1,4 +1,22 @@
 /**
+ * Clamps a number within the specified minimum and maximum range.
+ *
+ * @param {number} n - The number to be clamped.
+ * @param {number} min - The minimum value.
+ * @param {number} max - The maximum value.
+ * @returns {number} The clamped number.
+ */
+export const minmax = (n: number, min: number, max: number): number => {
+  if (min > max) {
+    throw new Error('min must be less than or equal to max')
+  }
+
+  if (n < min) return min
+  if (n > max) return max
+  return n
+}
+
+/**
  * Formats a number into a string with a given precision and separator.
  *
  * @param {number|string} n - The number to be formatted, can be of type number or string.
