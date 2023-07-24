@@ -27,13 +27,15 @@
     li {
       margin: 2em 0;
     }
-    li.active::before {
+    a.active::before {
       content: '';
       width: 10px;
       height: 10px;
       margin-right: 0.8em;
 
       background-image: url('/puce.svg');
+      animation: fade $animation-duration, toRight $animation-duration,
+      puce $animation-duration;
 
       display: inline-block;
     }
