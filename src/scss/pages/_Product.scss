@@ -15,6 +15,9 @@ $layout_offset: $title_height + $main_padding;
       flex: 1 1 0;
     }
   }
+  &__description h2, &__category h2 {
+    margin-top: 0;
+  }
   &__photo {
     width: 100%;
     padding: $gap;
