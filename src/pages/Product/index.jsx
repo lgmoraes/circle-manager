@@ -1,12 +1,14 @@
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import Button from '../../components/Button'
 import { makeBadge } from '../../components/Badge'
 import { formatPrice } from '../../utils/functions'
 import { getProduct } from '../../utils/api'
+import InputNumber from '../../components/InputNumber'
 
 function Product() {
+  const [price, setPrice] = useState(0)
   const { productId } = useParams()
   const { data, isLoading, isError } = useQuery({
     queryKey: ['products', productId],
@@ -15,8 +17,11 @@ function Product() {
   })
 
   useEffect(() => {
-    if (!isLoading) document.title = data.title
-  }, [data, isLoading])
+    if (isLoading) return
+
+    document.title = data.title
+    setPrice(data.price)
+  }, [isLoading])
 
   if (isLoading) return <p>Loader</p>
   if (isError) return <p>Something went wrong...</p>
@@ -34,11 +39,24 @@ function Product() {
           </div>
           <div className="product__price">
             <h2>Price</h2>
-            {data.price}
-            <Button>Update Price</Button>
+            <div className="product__line">
+              <InputNumber
+                value={price}
+                setValue={setPrice}
+                min={0}
+                suffix={'€'}
+              />
+              <p>
+                <span className="bold">Price </span>(including VAT):{' '}
+                {formatPrice(price * 1.2)}
+              </p>
+            </div>
+            <div className="product__line">
+              <Button>Update Price</Button>
+            </div>
           </div>
         </div>
-        <div className="product__categories">
+        <div className="product__category">
           <h2>Catégorie</h2>
           {makeBadge(data.category)}
         </div>

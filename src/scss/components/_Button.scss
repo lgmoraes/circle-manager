@@ -7,10 +7,8 @@
     border-color: transparent;
   }
 
-  min-width: 250px;
-  width: fit-content;
-  padding: 0.9em 1.8em;
-  margin: 0.5em;
+  height: $input-height;
+  padding: 0.5em 1.8em;
   box-sizing: border-box;
 
   color: white;
