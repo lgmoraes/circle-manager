@@ -1,4 +1,29 @@
 /**
+ * Formats a number into a string with a given precision and separator.
+ *
+ * @param {number|string} n - The number to be formatted, can be of type number or string.
+ * @param {number} [precision=2] - The desired precision for the decimal number (default: 2).
+ * @param {string} [separator='.'] - The separator used for the decimal point (default: '.').
+ * @param {boolean} [trim=true] - Whether to trim trailing zeros from the formatted string (default: true).
+ * @returns {string} The formatted string representation of the number with the given precision and separator.
+ */
+export const formatNumber = (
+  n: number | string,
+  precision: number = 2,
+  separator: string = '.',
+  trim: boolean = true
+): string => {
+  if (typeof n === 'string') n = parseFloat(n)
+
+  n = n.toFixed(precision)
+
+  if (trim) n = removeTrailingZeros(n)
+  if (separator !== '.') n.replace('.', separator)
+
+  return n
+}
+
+/**
  * Formats a number as a price with currency symbol.
  *
  * @param {number|String} n - The number to be formatted as a price.
@@ -9,31 +34,25 @@ export const formatPrice = (
   n: number | string,
   currency: string = '€'
 ): string => {
-  if (typeof n === 'string') n = parseFloat(n)
-
-  n = parseFloat(n.toFixed(2))
-
-  if (Number.isInteger(n) === false) return removeTrailingZeros(n) + currency
-
-  return n + currency
+  return formatNumber(n, 2) + currency
 }
 
 /**
  * Separates the integer and fractional parts of a number.
  *
- * @param {number} n - The number to be separated.
+ * @param {number | string} n - The number to be separated.
  * @returns {Array<string>} An array containing the integer and fractional parts of the number as strings.
  */
-export const separateNumberParts = (n: number): Array<string> =>
-  n.toString().split('.')
+export const separateNumberParts = (n: number | string): Array<string> =>
+  typeof n === 'string' ? n.split('.') : n.toString().split('.')
 
 /**
  * Removes trailing zeros from a number's fractional part.
  *
- * @param {number} n - The number from which to remove trailing zeros.
+ * @param {string} n - The string representation of the number to process.
  * @returns {string} The number without trailing zeros.
  */
-export const removeTrailingZeros = (n: number): string => {
+export const removeTrailingZeros = (n: string): string => {
   let [integerPart, floatingPart] = separateNumberParts(n)
 
   if (floatingPart === undefined) return integerPart
