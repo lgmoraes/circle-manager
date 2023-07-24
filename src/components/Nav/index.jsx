@@ -7,11 +7,15 @@ function Nav() {
       <Logo className="logo" />
 
       <ul className="nav__links">
-        <li>Dashboard</li>
-        <li className="active">
-          <NavLink to="/Home">Products management</NavLink>
+        <li>
+          <NavLink to="/dashboard">Dashboard</NavLink>
         </li>
-        <li>Employees management</li>
+        <li>
+          <NavLink to="/">Products management</NavLink>
+        </li>
+        <li>
+          <NavLink to="employees">Employees management</NavLink>
+        </li>
         <li>Logout</li>
       </ul>
     </nav>
