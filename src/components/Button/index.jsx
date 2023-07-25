@@ -35,6 +35,7 @@ function Button({
   rounded = false,
   type = 'button',
   to = false,
+  disabled = false,
 }) {
   const buttonClass = `button${secondary ? ' button--secondary' : ''}`
 
@@ -51,7 +52,12 @@ function Button({
     )
 
   return (
-    <StyledButton className={buttonClass} type={type} $rounded={rounded}>
+    <StyledButton
+      className={buttonClass}
+      type={type}
+      $rounded={rounded}
+      disabled={disabled}
+    >
       {children}
     </StyledButton>
   )

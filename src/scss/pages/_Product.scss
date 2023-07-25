@@ -6,8 +6,6 @@ $layout_offset: $title_height + $main_padding;
 
 .product {
   &__layout {
-    max-height: calc(99vh - $layout_offset);
-
     gap: $gap;
     display: flex;
 
@@ -20,7 +18,8 @@ $layout_offset: $title_height + $main_padding;
     margin-top: 0;
   }
   &__photo {
-    width: 100%;
+    width: 1px;
+    max-height: calc(99vh - $layout_offset);
     padding: $gap;
     flex-grow: 3;
 
@@ -48,5 +47,29 @@ $layout_offset: $title_height + $main_padding;
   p {
     margin: 0;
     line-height: $input-height;
+  }
+
+  @media screen and (max-width: $breakpoint-md) {
+    &__layout {
+      display: flex;
+      flex-direction: column;
+    }
+    &__description {
+      order: 1;
+    }
+    &__price {
+      order: 2;
+    }
+    &__photo {
+      width: 100%;
+      order: 1;
+    }
+    &__details {
+      order: 2;
+    }
+    &__category {
+      padding-bottom: $main_padding;
+      order: 3;
+    }
   }
 }

@@ -52,7 +52,7 @@ function Product() {
               </p>
             </div>
             <div className="product__line">
-              <Button>Update Price</Button>
+              <Button disabled={true}>Update Price</Button>
             </div>
           </div>
         </div>
